@@ -68,10 +68,12 @@ public class Ruangan {
             //daftarpasien[i] = z;
             i++;
         } else {
-            System.out.println("Sudah idak bisa menaambah pasien, ruangan penuh");
+            System.out.println("Tidak bisa menambah pasien, ruangan penuh");
         }
     }
 
+   
+    
     public void display() {
         System.out.println("ID : " + getId());
         System.out.println("Type : " + getType());
