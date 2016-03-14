@@ -36,6 +36,9 @@ public class PasienInap {
                 
 		return diagnosa.get(i);
 	}
+        public int getSizeDiagnosa(){
+            return diagnosa.size();
+        }
 	public void setPasien(Pasien pasien){
 		this.pasien=pasien;
 	}
