@@ -78,7 +78,7 @@ public class Ruangan {
 
     public PasienInap getPasienInapId(String Id) {
         PasienInap k = null;
-        for (int j = 0; j < Kapasitas; j++) {
+        for (int j = 0; j < daftarpasien.size(); j++) {
             if (Id.equals(daftarpasien.get(j).getPasien().getId())) {
                 k= daftarpasien.get(j);
             } else {
@@ -91,12 +91,13 @@ public class Ruangan {
     public void removePasienInapIndex(int j)
     {
         daftarpasien.remove(j);
+        i--;
     }
     
     public void removePasienInapId(String Id)
     {
           
-        for (int j = 0; j < Kapasitas; j++) {
+        for (int j = 0; j < daftarpasien.size(); j++) {
             if (Id.equals(daftarpasien.get(j).getPasien().getId())) 
             {
                 daftarpasien.remove(j);
@@ -105,6 +106,7 @@ public class Ruangan {
                 System.out.println("ID tidak ditemukan");
             }
         }
+        i--;
     }
 
     public void display() {
