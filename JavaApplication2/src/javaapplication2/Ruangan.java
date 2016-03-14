@@ -105,7 +105,6 @@ public class Ruangan {
                 System.out.println("ID tidak ditemukan");
             }
         }
-       
     }
 
     public void display() {
