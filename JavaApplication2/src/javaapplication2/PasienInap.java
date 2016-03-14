@@ -29,8 +29,8 @@ public class PasienInap {
 	public Dokter getDokter(){
 		return dokter;
 	}
-	public void addDiagnosa(String diagnosa){
-		this.diagnosa=diagnosa;
+	public void addDiagnosa(String d){
+		diagnosa.add(d);
 	}
 	public String getDiagnosa(int i){
                 
