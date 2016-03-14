@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Ruangan {
 
-    private ArrayList <PasienInap> daftarpasien = new ArrayList <PasienInap>();
-   // private PasienInap[] daftarpasien;
+    private ArrayList<PasienInap> daftarpasien = new ArrayList<PasienInap>();
+    // private PasienInap[] daftarpasien;
     private String Id;
     private int Kapasitas;
     public int i;
@@ -33,7 +33,7 @@ public class Ruangan {
             this.Kapasitas = 2;
         }
 //this.Kapasitas = Kapasitas;
-       // daftarpasien = new PasienInap[Kapasitas];
+        // daftarpasien = new PasienInap[Kapasitas];
         // i = 0;
     }
 
@@ -64,7 +64,7 @@ public class Ruangan {
     public void tambahpasien(Pasien p, Dokter d, String Diagnosa) {
         if (i < Kapasitas) {
             PasienInap z = new PasienInap(p, d, Diagnosa);
-           daftarpasien.add(z);
+            daftarpasien.add(z);
             //daftarpasien[i] = z;
             i++;
         } else {
@@ -72,8 +72,42 @@ public class Ruangan {
         }
     }
 
-   
+    public PasienInap getPasienInapIndex(int j) {
+        return daftarpasien.get(j);
+    }
+
+    public PasienInap getPasienInapId(String Id) {
+        PasienInap k = null;
+        for (int j = 0; j < Kapasitas; j++) {
+            if (Id.equals(daftarpasien.get(j).getPasien().getId())) {
+                k= daftarpasien.get(j);
+            } else {
+                System.out.println("ID tidak ditemukan");
+            }
+        }
+        return k;
+    }
     
+    public void removePasienInapIndex(int j)
+    {
+        daftarpasien.remove(j);
+    }
+    
+    public void removePasienInapId(String Id)
+    {
+          
+        for (int j = 0; j < Kapasitas; j++) {
+            if (Id.equals(daftarpasien.get(j).getPasien().getId())) 
+            {
+                daftarpasien.remove(j);
+            } else 
+            {
+                System.out.println("ID tidak ditemukan");
+            }
+        }
+       
+    }
+
     public void display() {
         System.out.println("ID : " + getId());
         System.out.println("Type : " + getType());
