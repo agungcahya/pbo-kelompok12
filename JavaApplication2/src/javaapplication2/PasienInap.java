@@ -1,12 +1,15 @@
+
+import java.util.ArrayList;
+
 public class PasienInap {
 	private Pasien pasien;
 	private Dokter dokter;
-	private String diagnosa;
+	private ArrayList<String> diagnosa=new ArrayList<String>();
 	
 	public PasienInap(Pasien pasien, Dokter dokter, String diagnosa){
 		setPasien(pasien);
 		setDokter(dokter);
-		setDiagnosa(diagnosa);
+		addDiagnosa(diagnosa);
 	}
 	
 	public void setDokter(Dokter dokter){
@@ -15,11 +18,12 @@ public class PasienInap {
 	public Dokter getDokter(){
 		return dokter;
 	}
-	public void setDiagnosa(String diagnosa){
+	public void addDiagnosa(String diagnosa){
 		this.diagnosa=diagnosa;
 	}
-	public String getDiagnosa(){
-		return diagnosa;
+	public String getDiagnosa(int i){
+                
+		return diagnosa.get(i);
 	}
 	public void setPasien(Pasien pasien){
 		this.pasien=pasien;
@@ -27,4 +31,7 @@ public class PasienInap {
 	public Pasien getPasien(){
 		return pasien;
 	}
+        public void delDiagnosa(int i){
+            diagnosa.remove(i);
+        }
 }
