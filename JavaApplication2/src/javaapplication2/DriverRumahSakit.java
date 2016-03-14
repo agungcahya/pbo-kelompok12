@@ -22,12 +22,22 @@ public class DriverRumahSakit{
 		Dokter D = new Dokter("ANDRE",'L',20,"D01","OTAK");
 		Ruangan R = new Ruangan("R01","Kelas1");
 		R.tambahpasien(P,D,"SAKIT OTAK");
+                R.getPasienInapIndex(0).addDiagnosa("Sakit Perut");
 		
-		P.display();
-		System.out.println();
-		D.display();
-		System.out.println();
-		R.display();
+		R.getPasienInapIndex(0).getPasien().display();
+                for(int i=0; i<R.getPasienInapIndex(0).getSizeDiagnosa(); i++){
+                    System.out.println(R.getPasienInapIndex(0).getDiagnosa(i));
+                }
+                R.getPasienInapIndex(0).delDiagnosa(0);
+                
+                R.getPasienInapId("P01").getDokter().display();
+                R.display();
+                R.removePasienInapId("P01");
+                R.display();
+		//System.out.println("nn");
+		//D.display();
+		//System.out.println();
+		//R.display();
 	
 		
 	}
