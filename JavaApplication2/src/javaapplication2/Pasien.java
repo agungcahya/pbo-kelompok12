@@ -1,3 +1,10 @@
+
+package javaapplication2;
+
+/**
+ *
+ * @author MahersyaEva Herminda
+ */
 public class Pasien extends Orang {
 	private String penyakit;
 	private String alamat;
