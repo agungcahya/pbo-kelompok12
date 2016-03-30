@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class Ruangan {
 
     private ArrayList<PasienInap> daftarpasien = new ArrayList<PasienInap>();
-    // private PasienInap[] daftarpasien;
     private String Id;
     private int Kapasitas;
     public int i;
@@ -109,10 +108,12 @@ public class Ruangan {
         i--;
     }
 
+    /*
     public void display() {
         System.out.println("ID : " + getId());
         System.out.println("Type : " + getType());
         System.out.println("Kapasitas : " + getKapasitas());
         System.out.println("Available : " + (getKapasitas() - i));
     }
+    */
 }

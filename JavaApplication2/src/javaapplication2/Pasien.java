@@ -26,7 +26,8 @@ public class Pasien extends Orang {
 	public String getAlamat() {
 		return alamat;
 	}
-	public void display() {
+	/*
+        public void display() {
 		System.out.println("==DATA PASIEN==");
 		System.out.println("Nama			: "+super.getNama());
 		System.out.println("Jenis Kelamin	: "+super.getJenisKelamin());
@@ -35,4 +36,5 @@ public class Pasien extends Orang {
 		System.out.println("Penyakit		: "+getPenyakit());
 		System.out.println("Alamat			: "+getAlamat());
 	}
+        */
 }

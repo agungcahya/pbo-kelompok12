@@ -24,16 +24,16 @@ public class DriverRumahSakit{
 		R.tambahpasien(P,D,"SAKIT OTAK");
                 R.getPasienInapIndex(0).addDiagnosa("Sakit Perut");
 		
-		R.getPasienInapIndex(0).getPasien().display();
+		//R.getPasienInapIndex(0).getPasien().display();
                 for(int i=0; i<R.getPasienInapIndex(0).getSizeDiagnosa(); i++){
                     System.out.println(R.getPasienInapIndex(0).getDiagnosa(i));
                 }
                 R.getPasienInapIndex(0).delDiagnosa(0);
                 
-                R.getPasienInapId("P01").getDokter().display();
-                R.display();
+                //R.getPasienInapId("P01").getDokter().display();
+                //R.display();
                 R.removePasienInapId("P01");
-                R.display();
+                //R.display();
 		//System.out.println("nn");
 		//D.display();
 		//System.out.println();

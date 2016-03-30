@@ -22,7 +22,8 @@ public class Dokter extends Orang {
 	public String getSpesialis () {
 		return spesialis;
 	}
-	public void display() {
+	/*
+        public void display() {
 		System.out.println("=DATA DOKTER=");
 		System.out.println("Nama			: "+super.getNama());
 		System.out.println("Jenis Kelamin	: "+super.getJenisKelamin());
@@ -30,4 +31,5 @@ public class Dokter extends Orang {
 		System.out.println("ID				: "+super.getId());
 		System.out.println("Spesialis		: "+getSpesialis());
 	}
+        */
 }
