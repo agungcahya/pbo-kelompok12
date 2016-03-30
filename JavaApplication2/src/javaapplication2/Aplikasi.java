@@ -1,4 +1,4 @@
-ss
+
 package javaapplication2;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Aplikasi {
     
     private ArrayList<Dokter> daftarDokter = new ArrayList<Dokter>();
     private ArrayList<Pasien> daftarpasien = new ArrayList<Pasien>();
-    private ArrayList<Ruangan> daftarRuangan = new Arraylistt<Ruangan>();
+    private ArrayList<Ruangan> daftarRuangan = new ArrayList<Ruangan>();
     
     
    public void addPasien(String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat)
@@ -28,7 +28,7 @@ public class Aplikasi {
         Pasien K = new Pasien(nama, jenisKelamin, umur, id, penyakit, Alamat);
           
             daftarpasien.add(K);
-            i++;
+            //K++;
    }
    
    public Pasien getPasien( String id)
@@ -62,9 +62,9 @@ public class Aplikasi {
      
    public void addDokkter (String nama, char jenisKelamin, int umur, String id, String spesialis)
    {
-       Dokter D = new Dokter(nama, jenisKelaamin, umur, id, spesialis)
+       Dokter D = new Dokter(nama, jenisKelamin, umur, id, spesialis);
            daftarDokter.add(D);
-           i++;
+           //D++;
    }
    
    public Dokter getDokter ( String id)
@@ -131,9 +131,9 @@ public class Aplikasi {
   
     //DIAGNOSA
      
-   public void DiagnosaBaru(String diagnosa) // TANYA KAK ASPRAK
+   public void DiagnosaBaru(String diagnosa) 
    {
-       for(j = 0; j < daftarpasien.size(); j++)
+       for(int j = 0; j < daftarpasien.size(); j++)
        {
            if(id.equals(daftarpasien.get(j).get(Id)))
            {
@@ -142,7 +142,7 @@ public class Aplikasi {
        }
     }
    
-   public String getDiagnosaBaru(String id) // TANYA KAK ASPRAK
+   public String getDiagnosaBaru(String id) 
    {
         for (int x = 0; x < daftarpasien.size(); x++) {
             if (id.equals(daftarpasien.get(x).getId())) {
