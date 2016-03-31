@@ -233,17 +233,15 @@ public class Aplikasi {
   public void MainMenu() {
 	
 	String nama;
-	char jenisKelamin, jenisKelaminDokter;
+	char jenisKelamin;
 	int umur, umurdokter;
 	String id;
 	String penyakit;
-	String alamat;
-	String idkamar;
-	String namadokter, iddokter;
-	String diagnosa;
+	String Alamat;
+	String id_R, id_D;
+	String Diagnosa;
 	String spesialis;
-	String tiperuangan;
-	
+	String Type;
 	
 	System.out.println("==MENU RUMAH SAKIT==");
 	System.out.println("=====================");
@@ -277,19 +275,19 @@ public class Aplikasi {
 			jenisKelamin = input.nextChar();
 			System.out.println("");
 			System.out.print("Alamat : ");
-			alamat = input.next();
+			Alamat = input.next();
 			System.out.println("");
 			System.out.print("Keluhan : ");
 			penyakit = input.next();
 			System.out.println("");
 			System.out.print("ID Dokter : ");
-			iddokter = input.next();
+			id_D = input.next();
 			System.out.println("");
 			System.out.print("Diagnosa : ");
-			diagnosa = input.next();
+			Diagnosa = input.next();
 			System.out.println("");
 			System.out.print("ID Kamar : ");
-			idkamar = input.next();
+			id_R = input.next();
 			System.out.println("");
 			menuSatu();
 			break;
@@ -326,16 +324,16 @@ public class Aplikasi {
 			Scanner input = new Scanner (System.in);
 			System.out.println("FORM TAMBAH DOKTER");
 			System.out.print("ID : ");
-			iddokter = input.next();
+			id_D = input.next();
 			System.out.println("");
 			System.out.print("Nama Lengkap : ");
-			namadokter = input.next();
+			nama = input.next();
 			System.out.println("");
 			System.out.print("Jenis Kelamin : ");
-			jenisKelaminDokter = input.nextChar();
+			jenisKelamin = input.nextChar();
 			System.out.println("");
 			System.out.print("Umur : ");
-			umurdokter = input.nextInt();
+			umur = input.nextInt();
 			System.out.println("");
 			System.out.print("Spesialis : ");
 			spesialis = input.next();
@@ -346,10 +344,10 @@ public class Aplikasi {
 			Scanner input = Scanner (System.in);
 			System.out.println("FORM TAMBAH RUANGAN");
 			System.out.print("ID : ");
-			idkamar = input.next();
+			id_R = input.next();
 			System.out.println("");
 			System.out.print("Type : ");
-			tiperuangan = input.next();
+			Type = input.next();
 			System.out.println("");
 			menuTujuh();
 			break;
