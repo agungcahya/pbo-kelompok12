@@ -16,6 +16,7 @@ import javaapplication2.PasienInap;
  *
  * @author user
  */
+
 public class Aplikasi {
     
     private ArrayList<Dokter> daftarDokter = new ArrayList<Dokter>();
@@ -25,9 +26,9 @@ public class Aplikasi {
     
    public void addPasien(String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat)
    {
-        Pasien K = new Pasien(nama, jenisKelamin, umur, id, penyakit, Alamat);
+        Pasien P = new Pasien(nama, jenisKelamin, umur, id, penyakit, Alamat);
           
-            daftarpasien.add(K);
+            daftarpasien.add(P);
             //K++;
    }
    
@@ -131,7 +132,7 @@ public class Aplikasi {
   
     //DIAGNOSA
      
-   public void DiagnosaBaru(String diagnosa) 
+ /*  public void DiagnosaBaru(String diagnosa) 
    {
        for(int j = 0; j < daftarpasien.size(); j++)
        {
@@ -171,6 +172,7 @@ public class Aplikasi {
         }
         return k;
     }
+    */
     
     public void removePasienInapIndex(int j)
     {
@@ -180,15 +182,16 @@ public class Aplikasi {
     
     // MENU
     
-   public void menuSatu(String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat, String id_R, String id_D)
+   public void menuSatu(String diagnosa, String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat, String id_R, String id_D)
    
    {
        addPasien( nama,  jenisKelamin,  umur, id,  penyakit,  Alamat);
        Pasien p = getPasien(id);
        Dokter d= getDokter(id_D);
        Ruangan R = getRuangan(id_R);
-       r = getRuangan(id_R);
-       r.tambahpasien (getPasien(daftarpasien.size()), getDokter(id_D), String Diagnosa);
+       R.tambahpasien(p, d, diagnosa);
+       //r = getRuangan(id_R);
+       //r.tambahpasien (getPasien(daftarpasien.size()), getDokter(id_D), String Diagnosa);
    }
    
    public void menuDua(String id)
@@ -201,7 +204,7 @@ public class Aplikasi {
    {
        for(int d = 0; d < daftarDokter.size(); d++)
        {
-           daftarDokter.get(d);
+         System.out.println(daftarDokter.get(d).getNama());
        }
    }
    
@@ -209,7 +212,7 @@ public class Aplikasi {
    {
        for(int p = 0; p < daftarpasien.size(); p++)
        {
-           daftarpasien.get(p);
+           System.out.println(daftarpasien.get(p).getNama());
        }
    }
       
@@ -217,7 +220,7 @@ public class Aplikasi {
    {
        for (int r = 0; r < daftarRuangan.size(); r++)
        {
-           daftarRuangan.get(r);
+           System.out.println(daftarRuangan.get(r).getId());
        }
    }
    
@@ -230,6 +233,9 @@ public class Aplikasi {
   {
       addRuangan(id, Type);
   }
+}
+
+  
   public void MainMenu() {
 	
 	String nama;
