@@ -190,38 +190,32 @@ public class Aplikasi {
        Dokter d= getDokter(id_D);
        Ruangan R = getRuangan(id_R);
        R.tambahpasien(p, d, diagnosa);
-       //r = getRuangan(id_R);
-       //r.tambahpasien (getPasien(daftarpasien.size()), getDokter(id_D), String Diagnosa);
    }
    
    public void menuDua(String id)
    {
        getPasien(id);
        deletePasien(id);
-   }
-   
-    public void menuTiga()
-   {
-       for(int d = 0; d < daftarDokter.size(); d++)
-       {
-         System.out.println(daftarDokter.get(d).getNama());
+       for(int i=0;i<daftarRuangan.size();i++){
+           if(daftarRuangan.get(i).getPasienInapId(id)!=null){
+               daftarRuangan.get(i).removePasienInapId(id);
+           }
        }
    }
    
-   public void menuEmpat()
+    public ArrayList<Dokter> menuTiga()
    {
-       for(int p = 0; p < daftarpasien.size(); p++)
-       {
-           System.out.println(daftarpasien.get(p).getNama());
-       }
+       return daftarDokter;
+   }
+   
+   public ArrayList<Pasien> menuEmpat()
+   {
+       return daftarpasien;
    }
       
-   public void menuLima ()
+   public ArrayList<Ruangan> menuLima ()
    {
-       for (int r = 0; r < daftarRuangan.size(); r++)
-       {
-           System.out.println(daftarRuangan.get(r).getId());
-       }
+       return daftarRuangan;
    }
    
    public void menuEnam (String nama, char jenisKelamin, int umur, String id, String spesialis)
@@ -240,7 +234,7 @@ public class Aplikasi {
 	
 	String nama;
 	char jenisKelamin;
-	int umur, umurdokter;
+	int umur, umurdokter, pilih=1;
 	String id;
 	String penyakit;
 	String alamat;
@@ -248,118 +242,112 @@ public class Aplikasi {
 	String diagnosa;
 	String spesialis;
 	String Type;
-	
-	System.out.println("==MENU RUMAH SAKIT==");
-	System.out.println("=====================");
-	System.out.println("");
-	System.out.println("1. Check-in Pasien");
-	System.out.println("2. Check-out Pasien");
-	System.out.println("3. Lihat Dokter");
-	System.out.println("4. Lihat Pasien");
-	System.out.println("5. Lihat Kamar");
-	System.out.println("6. Tambah Dokter");
-	System.out.println("7. Tambah Ruangan");
-	
-	Scanner s = new Scanner (System.in);
-	System.out.println("Pilih Menu : ");
-	int pilih = s.nextInt();
-	Scanner input = new Scanner (System.in);
-	switch (pilih) {
-		case 1 : 
-
-			System.out.println("FORM CHECK-IN PASIEN");
-			System.out.print("ID : ");
-			id = input.next();
-			System.out.println("");
-			System.out.print("Nama Pasien : ");
-			nama = input.next();
-			System.out.println("");
-			System.out.print("Usia : ");
-			umur = input.nextInt();
-			System.out.println("");
-			System.out.print("Jenis Kelamin : ");
-			jenisKelamin = input.next().charAt(0);
-			System.out.println("");
-			System.out.print("Alamat : ");
-			alamat = input.next();
-			System.out.println("");
-			System.out.print("Keluhan : ");
-			penyakit = input.next();
-			System.out.println("");
-			System.out.print("ID Dokter : ");
-			id_D = input.next();
-			System.out.println("");
-			System.out.print("Diagnosa : ");
-			diagnosa = input.next();
-			System.out.println("");
-			System.out.print("ID Kamar : ");
-			id_R = input.next();
-			System.out.println("");
-			menuSatu(nama, jenisKelamin, umur, id, penyakit, alamat, id_R, id_D, diagnosa);
-			break;
-		case 2 :
-			System.out.println("FORM CHECK-OUT PASIEN");
-			System.out.print("ID : ");
-			id = input.next();
-			System.out.println("");
-			menuDua(id);
-			break;
-		case 3 :
-			
-			System.out.println("DAFTAR DOKTER");
-                        menuTiga();
-			//System.out.println("ID : "+daftarDokter.get(i).getId());
-			//System.out.println("Nama : "+daftarDokter.get(i).getNama());
-			//System.out.println("Spesialis : "+daftarDokter.get(i).getSpesialis());
-		case 4 :
-			
-			System.out.println("DAFTAR PASIEN");
-                        menuEmpat();
-			//System.out.println("ID : "+daftarPasien.get(i).getId());
-			//System.out.println("Nama : "+daftarPasien.get(i).getNama());
-			//System.out.println("Diagnosa : "+daftarPasien.get(i).getDiagnosa());
-			//System.out.println("Kamar : "+daftarRuangan.get(i).getId());
-			break;
-		case 5 :
-			
-			System.out.println("DAFTAR KAMAR");
-                        menuLima();
-			//System.out.println("No : "+daftarRuangan.get(i).getId());
-			//System.out.println("Status : "+daftarRuangan.get(i).getStatus());
-			//System.out.println("Jumlah Pasien : "+daftarRuangan.get(i).daftarPasienInap.size());
-			break;
-		case 6 :
-			
-			System.out.println("FORM TAMBAH DOKTER");
-			System.out.print("ID : ");
-			id_D = input.next();
-			System.out.println("");
-			System.out.print("Nama Lengkap : ");
-			nama = input.next();
-			System.out.println("");
-			System.out.print("Jenis Kelamin : ");
-			jenisKelamin = input.next().charAt(0);
-			System.out.println("");
-			System.out.print("Umur : ");
-			umur = input.nextInt();
-			System.out.println("");
-			System.out.print("Spesialis : ");
-			spesialis = input.next();
-			System.out.println("");
-			menuEnam(nama, jenisKelamin, umur, id_D, spesialis);
-			break;
-		case 7 : 
-			
-			System.out.println("FORM TAMBAH RUANGAN");
-			System.out.print("ID : ");
-			id_R = input.next();
-			System.out.println("");
-			System.out.print("Type : ");
-			Type = input.next();
-			System.out.println("");
-			menuTujuh(id_R, Type);
-			break;
-	}
-}
-  
+	while (pilih!=0){
+            System.out.println("==MENU RUMAH SAKIT==");
+            System.out.println("=====================");
+            System.out.println("");
+            System.out.println("1. Check-in Pasien");
+            System.out.println("2. Check-out Pasien");
+            System.out.println("3. Lihat Dokter");
+            System.out.println("4. Lihat Pasien");
+            System.out.println("5. Lihat Kamar");
+            System.out.println("6. Tambah Dokter");
+            System.out.println("7. Tambah Ruangan");
+            System.out.println("0. Keluar");
+            Scanner s = new Scanner (System.in);
+            System.out.println("Pilih Menu : ");
+            pilih = s.nextInt();
+            Scanner input = new Scanner (System.in);
+            switch (pilih) {
+                    case 1 : 
+                            System.out.println("FORM CHECK-IN PASIEN");
+                            System.out.print("ID : ");
+                            id = input.next();
+                            System.out.print("Nama Pasien : ");
+                            nama = input.next();
+                            System.out.print("Usia : ");
+                            umur = input.nextInt();
+                            System.out.print("Jenis Kelamin (L/P) : ");
+                            jenisKelamin = input.next().charAt(0);
+                            System.out.print("Alamat : ");
+                            alamat = input.next();
+                            System.out.print("Keluhan : ");
+                            penyakit = input.next();
+                            System.out.print("ID Dokter : ");
+                            id_D = input.next();
+                            System.out.print("Diagnosa : ");
+                            diagnosa = input.next();
+                            System.out.print("ID Kamar : ");
+                            id_R = input.next();
+                            menuSatu(nama, jenisKelamin, umur, id, penyakit, alamat, id_R, id_D, diagnosa);
+                            break;
+                    case 2 :
+                            System.out.println("FORM CHECK-OUT PASIEN");
+                            System.out.print("ID : ");
+                            id = input.next();
+                            System.out.println("");
+                            menuDua(id);
+                            break;
+                    case 3 :
+                            System.out.println("DAFTAR DOKTER");
+                            ArrayList<Dokter> dokList=menuTiga();
+                            for(int d = 0; d < dokList.size(); d++)
+                            {
+                                System.out.println("Id          : "+dokList.get(d).getId());
+                                System.out.println("Nama        : "+dokList.get(d).getNama());
+                                System.out.println("Spesialis   : "+dokList.get(d).getSpesialis());
+                            }
+                            break;
+                    case 4 :
+                            System.out.println("DAFTAR PASIEN");
+                            ArrayList<Pasien> pasList=menuEmpat();
+                            for(int p = 0; p < pasList.size(); p++)
+                            {
+                                System.out.println("Id          : "+pasList.get(p).getId());
+                                System.out.println("Nama        : "+pasList.get(p).getNama());
+                                System.out.println("Penyakit   : "+pasList.get(p).getPenyakit());
+                                for(int i=0;i<daftarRuangan.size();i++){
+                                    if(daftarRuangan.get(i).getPasienInapId(pasList.get(p).getId())!=null){
+                                        System.out.println("Kamar       : "+daftarRuangan.get(i).getId());
+                                    }
+                                }
+                            }
+                            break;
+                    case 5 :
+                            System.out.println("DAFTAR KAMAR");
+                            menuLima();
+                            ArrayList<Ruangan> rList=menuLima();
+                            for(int r = 0; r < rList.size(); r++)
+                            {
+                                System.out.println("Id          : "+rList.get(r).getId());
+                                System.out.println("Type        : "+rList.get(r).getType());
+                                System.out.println("Kapasitas   : "+rList.get(r).getKapasitas());
+                                System.out.println("Availabel   : "+(rList.get(r).getKapasitas()-rList.get(r).i));                                
+                            }
+                            break;
+                    case 6 :
+                            System.out.println("FORM TAMBAH DOKTER");
+                            System.out.print("ID : ");
+                            id_D = input.next();
+                            System.out.print("Nama Lengkap : ");
+                            nama = input.next();
+                            System.out.print("Jenis Kelamin (L/P): ");
+                            jenisKelamin = input.next().charAt(0);
+                            System.out.print("Umur : ");
+                            umur = input.nextInt();
+                            System.out.print("Spesialis : ");
+                            spesialis = input.next();
+                            menuEnam(nama, jenisKelamin, umur, id_D, spesialis);
+                            break;
+                    case 7 : 
+                            System.out.println("FORM TAMBAH RUANGAN");
+                            System.out.print("ID : ");
+                            id_R = input.next();
+                            System.out.print("Type (VVIP/VIP/1/2) : ");
+                            Type = input.next();
+                            menuTujuh(id_R, Type);
+                            break;
+            }
+        }
+    }
 }

@@ -22,15 +22,6 @@ public class Ruangan {
     public Ruangan(String Id, String Type) {
         this.Id = Id;
         setType(Type);
-        if (Type == "VVIP") {
-            this.Kapasitas = 1;
-        } else if (Type == "VIP") {
-            this.Kapasitas = 1;
-        } else if (Type == "Kelas1") {
-            this.Kapasitas = 3;
-        } else if (Type == "Kelas2") {
-            this.Kapasitas = 2;
-        }
 //this.Kapasitas = Kapasitas;
         // daftarpasien = new PasienInap[Kapasitas];
         // i = 0;
@@ -54,6 +45,15 @@ public class Ruangan {
 
     public void setType(String Type) {
         this.Type = Type;
+        if ("VVIP".equals(Type)) {
+            setKapasitas(1);
+        } else if ("VIP".equals(Type)) {
+            setKapasitas(1);
+        } else if ("1".equals(Type)) {
+            setKapasitas(3);
+        } else if ("2".equals(Type)) {
+            setKapasitas(2);
+        }
     }
 
     public String getType() {
