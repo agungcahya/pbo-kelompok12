@@ -22,7 +22,18 @@ public class Aplikasi {
     private ArrayList<Dokter> daftarDokter = new ArrayList<Dokter>();
     private ArrayList<Pasien> daftarpasien = new ArrayList<Pasien>();
     private ArrayList<Ruangan> daftarRuangan = new ArrayList<Ruangan>();
-    
+
+    public ArrayList<Dokter> getDaftarDokter() {
+        return daftarDokter;
+    }
+
+    public ArrayList<Pasien> getDaftarpasien() {
+        return daftarpasien;
+    }
+
+    public ArrayList<Ruangan> getDaftarRuangan() {
+        return daftarRuangan;
+    }
     
    public void addPasien(String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat)
    {
@@ -174,10 +185,13 @@ public class Aplikasi {
     }
     */
     
-    public void removePasienInapIndex(int j)
+    public void removePasienInapId(String id)
     {
-        daftarpasien.remove(j);
-        j--;
+        for(int i=0;i<daftarRuangan.size();i++){
+           if(daftarRuangan.get(i).getPasienInapId(id)!=null){
+               daftarRuangan.get(i).removePasienInapId(id);
+           }
+        }
     }
     
     // MENU

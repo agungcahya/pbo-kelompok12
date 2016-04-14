@@ -12,8 +12,10 @@ package javaapplication2;
  */
 public class DriverRumahSakit{
 	public static void main(String args[]){
-		Aplikasi app=new Aplikasi();
-		app.mainMenu();
+            Aplikasi app=new Aplikasi();
+            Controller c = new Controller(app);
+            
+            //app.mainMenu();
 
 	}
 }

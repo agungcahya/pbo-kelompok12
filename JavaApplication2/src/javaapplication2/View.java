@@ -5,18 +5,159 @@
  */
 package javaapplication2;
 
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author wewew
  */
 public class View extends javax.swing.JFrame {
-
+    Aplikasi app;
+    private Scanner sInt;
+    private Scanner sStr;
     /**
      * Creates new form View
      */
     public View() {
         initComponents();
     }
+    public View(Aplikasi app){
+        this.app=app;
+        sInt=new Scanner(System.in);
+        sStr=new Scanner(System.in);
+    }
+    
+    public void addListener(ActionListener a){
+        btn_cancel_r.addActionListener(a);
+        btn_submit_r.addActionListener(a);
+        tipe_cb.addActionListener(a);
+        btn_cancel_out.addActionListener(a);
+        btn_checkout.addActionListener(a);
+        show_r.addActionListener(a);
+        btn_cancel_dr.addActionListener(a);
+        btn_submit_dr.addActionListener(a);
+        btn_show_dr.addActionListener(a);
+        btn_checkin.addActionListener(a);
+        btn_cancel_in.addActionListener(a);
+        
+    }
+    
+    //menu1
+    public void resetCheckIn(){
+        id_pasien_in.setText("");
+        nama_p.setText("");
+        umur_p.setText("");
+        keluhan.setText("");
+        alamat_p.setText("");
+        
+    }
+    public String getAlamat_p() {
+        return alamat_p.getText();
+    }
+    public JButton getBtn_cancel_in() {
+        return btn_cancel_in;
+    }
+    public JButton getBtn_checkin() {
+        return btn_checkin;
+    }
+    public String getId_pasien_in() {
+        return id_pasien_in.getText();
+    }
+    public String getKeluhan() {
+        return keluhan.getText();
+    }
+    public String getNama_p() {
+        return nama_p.getText();
+    }
+    public int getUmur_p() {
+        return Integer.parseInt(umur_p.getText());
+    }
+    
+    
+    //menu2
+    public JButton getBtn_cancel_out() {
+        return btn_cancel_out;
+    }
+    public JButton getBtn_checkout() {
+        return btn_checkout;
+    }
+    public String getId_pasien_out() {
+        return id_pasien_out.getText();
+    }
+    public void resetCheckOut() {
+        id_pasien_out.setText(" ");
+    }
+    
+    //menu3
+    public JButton getBtn_show_dr() {
+        return btn_show_dr;
+    }
+    public void setDaftarDokter(String s) {
+        this.daftar_dr.setText(s);
+    }
+    
+    //menu4
+    
+    
+    //menu5
+    public void setDaftarRuangan(String s){
+        daftar_r.setText(s);
+    }
+    public JButton getShow_r() {
+        return show_r;
+    }
+    
+    //menu6
+    public void resetAdd_dokter(){
+        id_dr.setText("");
+        nama_dr.setText("");
+        umur_dr.setText("");
+        spes_dr.setText("");
+    }
+    public JButton getBtn_cancel_dr() {
+        return btn_cancel_dr;
+    }
+    public JButton getBtn_submit_dr() {
+        return btn_submit_dr;
+    }
+    public String getId_dr() {
+        return id_dr.getText();
+    }
+    public String getJenis_kel_dr() {
+        return (String)jenis_kel_dr.getSelectedItem();
+    }
+    public String getNama_dr() {
+        return nama_dr.getText();
+    }
+    public String getSpes_dr() {
+        return spes_dr.getText();
+    }
+    public int getUmur_dr() {
+        return Integer.parseInt(umur_dr.getText());
+    }
+    
+    //menu7
+    public void resetAdd_ruangan() {
+        id_ruangan.setText(" ");
+    }
+    public JButton getBtn_cancel_r() {
+        return btn_cancel_r;
+    }
+    public JButton getBtn_submit_r() {
+        return btn_submit_r;
+    }
+    public String getId_ruangan() {
+        return id_ruangan.getText();
+    }
+    public String getTipe_cb() {
+        return (String)tipe_cb.getSelectedItem();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,10 +199,16 @@ public class View extends javax.swing.JFrame {
         id_pasien_out = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        daftar_dr = new javax.swing.JTextArea();
+        btn_show_dr = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        show_r = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        daftar_r = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
         btn_submit_dr = new javax.swing.JButton();
         btn_cancel_dr = new javax.swing.JButton();
@@ -73,10 +220,9 @@ public class View extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         id_dr = new javax.swing.JTextField();
         nama_dr = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         umur_dr = new javax.swing.JTextField();
         spes_dr = new javax.swing.JTextField();
+        jenis_kel_dr = new javax.swing.JComboBox();
         jPanel8 = new javax.swing.JPanel();
         btn_cancel_r = new javax.swing.JButton();
         btn_submit_r = new javax.swing.JButton();
@@ -126,12 +272,6 @@ public class View extends javax.swing.JFrame {
 
         jLabel21.setText("Keluhan");
 
-        id_pasien_in.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_pasien_inActionPerformed(evt);
-            }
-        });
-
         jLabel22.setText("Dokter");
 
         jLabel23.setText("Ruangan");
@@ -171,7 +311,7 @@ public class View extends javax.swing.JFrame {
                         .addComponent(keluhan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                         .addComponent(alamat_p, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(nama_p, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
                     .addComponent(jLabel22))
@@ -254,7 +394,7 @@ public class View extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addGap(44, 44, 44)
                         .addComponent(id_pasien_out, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,21 +416,42 @@ public class View extends javax.swing.JFrame {
 
         jLabel3.setText("Daftar Dokter");
 
+        daftar_dr.setColumns(20);
+        daftar_dr.setRows(5);
+        jScrollPane2.setViewportView(daftar_dr);
+
+        btn_show_dr.setText("Show All");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addComponent(jLabel3)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(204, 204, 204)
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 214, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_show_dr)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(btn_show_dr)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Daftar Dokter", jPanel4);
@@ -304,7 +465,7 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(206, 206, 206)
                 .addComponent(jLabel4)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,13 +479,29 @@ public class View extends javax.swing.JFrame {
 
         jLabel5.setText("Daftar Ruangan");
 
+        show_r.setText("Show All");
+
+        daftar_r.setColumns(20);
+        daftar_r.setRows(5);
+        jScrollPane1.setViewportView(daftar_r);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(206, 206, 206)
-                .addComponent(jLabel5)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(show_r))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(211, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -332,7 +509,11 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(show_r)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Daftar Ruangan", jPanel6);
@@ -353,46 +534,39 @@ public class View extends javax.swing.JFrame {
 
         jLabel14.setText("Spesialis");
 
-        jRadioButton1.setText("Laki-Laki");
-
-        jRadioButton2.setText("Perempuan");
+        jenis_kel_dr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+                .addContainerGap(386, Short.MAX_VALUE)
+                .addComponent(btn_submit_dr)
+                .addGap(18, 18, 18)
+                .addComponent(btn_cancel_dr)
+                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(btn_submit_dr)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancel_dr)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(jLabel6))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14))
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(id_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(umur_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(spes_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(nama_dr, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                                            .addComponent(jRadioButton1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jRadioButton2))))))
-                        .addGap(123, 123, 123))))
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(id_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(umur_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spes_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nama_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jenis_kel_dr, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,8 +584,7 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jenis_kel_dr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -420,7 +593,7 @@ public class View extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(spes_dr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancel_dr)
                     .addComponent(btn_submit_dr))
@@ -430,11 +603,6 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.addTab("Tambah Dokter", jPanel7);
 
         btn_cancel_r.setText("Cancel");
-        btn_cancel_r.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cancel_rActionPerformed(evt);
-            }
-        });
 
         btn_submit_r.setText("Submit");
 
@@ -444,18 +612,7 @@ public class View extends javax.swing.JFrame {
 
         jLabel9.setText("Tipe");
 
-        id_ruangan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_ruanganActionPerformed(evt);
-            }
-        });
-
         tipe_cb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VVIP", "VIP", "Kelas 1", "Kelas 2" }));
-        tipe_cb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipe_cbActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -481,7 +638,7 @@ public class View extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(id_ruangan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tipe_cb, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,57 +682,7 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_cancel_rActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_rActionPerformed
-        // TODO add your handling code here:
-        id_ruangan.setText(null);
-    }//GEN-LAST:event_btn_cancel_rActionPerformed
-
-    private void id_pasien_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_pasien_inActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_pasien_inActionPerformed
-
-    private void id_ruanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_ruanganActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_ruanganActionPerformed
-
-    private void tipe_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipe_cbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipe_cbActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new View().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alamat_p;
@@ -585,8 +692,11 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancel_r;
     private javax.swing.JButton btn_checkin;
     private javax.swing.JButton btn_checkout;
+    private javax.swing.JButton btn_show_dr;
     private javax.swing.JButton btn_submit_dr;
     private javax.swing.JButton btn_submit_r;
+    private javax.swing.JTextArea daftar_dr;
+    private javax.swing.JTextArea daftar_r;
     private javax.swing.JTextField id_dr;
     private javax.swing.JTextField id_pasien_in;
     private javax.swing.JTextField id_pasien_out;
@@ -624,14 +734,16 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox jenis_kel_dr;
     private javax.swing.JTextField keluhan;
     private javax.swing.JTextField nama_dr;
     private javax.swing.JTextField nama_p;
+    private javax.swing.JButton show_r;
     private javax.swing.JTextField spes_dr;
     private javax.swing.JComboBox tipe_cb;
     private javax.swing.JTextField umur_dr;
