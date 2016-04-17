@@ -49,9 +49,9 @@ public class Ruangan {
             setKapasitas(1);
         } else if ("VIP".equals(Type)) {
             setKapasitas(1);
-        } else if ("1".equals(Type)) {
+        } else if ("Kelas 1".equals(Type)) {
             setKapasitas(3);
-        } else if ("2".equals(Type)) {
+        } else if ("Kelas 2".equals(Type)) {
             setKapasitas(2);
         }
     }

@@ -357,7 +357,7 @@ public class Aplikasi {
                             System.out.println("FORM TAMBAH RUANGAN");
                             System.out.print("ID : ");
                             id_R = input.next();
-                            System.out.print("Type (VVIP/VIP/1/2) : ");
+                            System.out.print("Type (VVIP/VIP/Kelas 1/Kelas 2) : ");
                             Type = input.next();
                             menuTujuh(id_R, Type);
                             break;
