@@ -35,12 +35,13 @@ public class Aplikasi {
         return daftarRuangan;
     }
     
+    
+    
    public void addPasien(String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat)
    {
         Pasien P = new Pasien(nama, jenisKelamin, umur, id, penyakit, Alamat);
           
             daftarpasien.add(P);
-            //K++;
    }
    
    public Pasien getPasien( String id)
@@ -67,7 +68,6 @@ public class Aplikasi {
                 System.out.println("ID tidak ditemukan");
             }
         }
-         // i--;
    }
  
      // DOKTER : 
@@ -103,7 +103,6 @@ public class Aplikasi {
                 System.out.println("ID tidak ditemukan");
             }
         }
-       // i--;
    }
    
    //RUANGAN
@@ -138,53 +137,8 @@ public class Aplikasi {
                 System.out.println("ID tidak ditemukan");
             }
         }
-       // i--;
    }
   
-    //DIAGNOSA
-     
- /*  public void DiagnosaBaru(String diagnosa) 
-   {
-       for(int j = 0; j < daftarpasien.size(); j++)
-       {
-           if(id.equals(daftarpasien.get(j).get(Id)))
-           {
-             add(diagnosa);
-           }
-       }
-    }
-   
-   public String getDiagnosaBaru(String id) 
-   {
-        for (int x = 0; x < daftarpasien.size(); x++) {
-            if (id.equals(daftarpasien.get(x).getId())) {
-                return diagnosa.get(x);
-            } 
-        }   
-   }
-   
-   public void DeleteDiagnosaBaru()
-   {
-        for (int x = 0; x < daftarpasien.size(); x++) {
-            if (id.equals(daftarpasien.get(x).getId())) {
-                remove.daftarpasien(diagnosa);
-            } 
-        }
-   }
-    
-     public PasienInap getPasienInapId(String Id) {
-        PasienInap k = null;
-        for (int j = 0; j < getRuangan(j).daftarpasieninap.size(); j++) {
-            if (Id.equals(getRuangan(j).daftarpasieninap.get(j).getPasien().getId())) {
-                k = getRuangan(j).daftarpasieninap.get(j);
-            } else {
-                System.out.println("ID tidak ditemukan");
-            }
-        }
-        return k;
-    }
-    */
-    
     public void removePasienInapId(String id)
     {
         for(int i=0;i<daftarRuangan.size();i++){

@@ -25,22 +25,28 @@ public class Controller implements ActionListener{
             view.resetCheckIn();
         }
         if (source.equals(view.getBtn_checkin())){
-            char jk;
-            if("L".equals(view.getJenis_kel_dr())){
-                jk='L';
-            }else {
-                jk='P';
+            try{
+                if(!"".equals(view.getId_pasien_in())){
+                    char jk;
+                if("L".equals(view.getJenis_kel_dr())){
+                    jk='L';
+                }else {
+                    jk='P';
+                }
+                String idp = view.getId_pasien_in();
+                String nama = view.getNama_p();
+                int umur = view.getUmur_p();
+                String keluhan = view.getKeluhan();
+                String alamat = view.getAlamat_p();
+                String diagnosa = view.getDiagnosa();
+                String id_D = view.getCmb_dokter();
+                String id_R = view.getCmb_ruangan();
+                model.menuSatu(nama, jk, umur, idp, keluhan, alamat, id_R, id_D, diagnosa);
+                view.resetCheckIn();
+                }
+            }catch(Exception e){
+                view.errorMsg(e);
             }
-            String idp = view.getId_pasien_in();
-            String nama = view.getNama_p();
-            int umur = view.getUmur_p();
-            String keluhan = view.getKeluhan();
-            String alamat = view.getAlamat_p();
-            String diagnosa = view.getDiagnosa();
-            String id_D = view.getCmb_dokter();
-            String id_R = view.getCmb_ruangan();
-            model.menuSatu(nama, jk, umur, idp, keluhan, alamat, id_R, id_D, diagnosa);
-            view.resetCheckIn();
         }
         
         //menu2
@@ -48,52 +54,71 @@ public class Controller implements ActionListener{
             view.resetCheckOut();
         }
         if (source.equals(view.getBtn_checkout())){
-            String idOut = view.getId_pasien_out();
-            model.deletePasien(idOut);
-            model.removePasienInapId(idOut);
-            view.resetCheckOut();
+            try{
+                String idOut = view.getId_pasien_out();
+                model.deletePasien(idOut);
+                model.removePasienInapId(idOut);
+                view.resetCheckOut();
+            }catch(Exception e){
+                view.errorMsg(e);
+            }
+            
         }
         
         //menu3
         if (source.equals(view.getBtn_show_dr())){
-            for(int i=0; i<model.getDaftarDokter().size(); i++){
-                String id=model.getDaftarDokter().get(i).getId();
-                String nama=model.getDaftarDokter().get(i).getNama();
-                char jk=model.getDaftarDokter().get(i).getJenisKelamin();
-                String sp=model.getDaftarDokter().get(i).getSpesialis();
-                view.setDaftarDokter(id, nama, jk, sp, i);
-            }  
+            try{
+                for(int i=0; i<model.getDaftarDokter().size(); i++){
+                    String id=model.getDaftarDokter().get(i).getId();
+                    String nama=model.getDaftarDokter().get(i).getNama();
+                    char jk=model.getDaftarDokter().get(i).getJenisKelamin();
+                    String sp=model.getDaftarDokter().get(i).getSpesialis();
+                    view.setDaftarDokter(id, nama, jk, sp, i);
+                }
+            }catch(Exception e){
+                view.errorMsg(e);
+            }
+              
         }
         
         //menu4
         if (source.equals(view.getShow_p())){
-            for(int i=0; i<model.getDaftarpasien().size(); i++){
-                String id=model.getDaftarpasien().get(i).getId();
-                String nama=model.getDaftarpasien().get(i).getNama();
-                String diag=model.getDaftarpasien().get(i).getPenyakit();
-                String kmr=null;
-                for(int j=0;j<model.getDaftarRuangan().size();j++){
-                    if(model.getDaftarRuangan().get(j).getPasienInapId(id)!=null){
-                        kmr=model.getDaftarRuangan().get(j).getId();
-                        
+            try{
+                view.reset_tab_p();
+                for(int i=0; i<model.getDaftarpasien().size(); i++){
+                    String id=model.getDaftarpasien().get(i).getId();
+                    String nama=model.getDaftarpasien().get(i).getNama();
+                    String diag=model.getDaftarpasien().get(i).getPenyakit();
+                    String kmr=null;
+                    for(int j=0;j<model.getDaftarRuangan().size();j++){
+                        if(model.getDaftarRuangan().get(j).getPasienInapId(id)!=null){
+                            kmr=model.getDaftarRuangan().get(j).getId();
+
+                        }
                     }
+                    view.setDaftarPasien(id, nama, diag, kmr, i);
                 }
-                view.setDaftarPasien(id, nama, diag, kmr, i);
+            }catch(Exception e){
+                view.errorMsg(e);
             }
+            
         }
 
         //menu5
         if (source.equals(view.getShow_r())){
-            for(int i=0; i<model.getDaftarRuangan().size(); i++){
-                String id=model.getDaftarRuangan().get(i).getId();
-                String tipe=model.getDaftarRuangan().get(i).getType();
-                int kp=model.getDaftarRuangan().get(i).getKapasitas();
-                int av=(model.getDaftarRuangan().get(i).getKapasitas()-model.getDaftarRuangan().get(i).i);
-                Object[] o= {id,tipe,kp,av};
-               
-                
-                view.setTab_r(id,tipe,kp,av,i);
-            }  
+            try{
+                for(int i=0; i<model.getDaftarRuangan().size(); i++){
+                    String id=model.getDaftarRuangan().get(i).getId();
+                    String tipe=model.getDaftarRuangan().get(i).getType();
+                    int kp=model.getDaftarRuangan().get(i).getKapasitas();
+                    int av=(model.getDaftarRuangan().get(i).getKapasitas()-model.getDaftarRuangan().get(i).i);
+                    view.setTab_r(id,tipe,kp,av,i);
+
+                }
+            }catch(Exception e){
+                view.errorMsg(e);
+            }
+              
         }
         
         //menu6
@@ -101,15 +126,23 @@ public class Controller implements ActionListener{
             view.resetAdd_dokter();
         }
         if (source.equals(view.getBtn_submit_dr())){
-            char jk;
-            if("L".equals(view.getJenis_kel_dr())){
-                jk='L';
-            }else {
-                jk='P';
+            try{
+                if(!"".equals(view.getId_dr())){
+                    char jk;
+                    if("L".equals(view.getJenis_kel_dr())){
+                        jk='L';
+                    }else {
+                        jk='P';
+                    }
+                    model.menuEnam(view.getNama_dr(), jk, view.getUmur_dr(), view.getId_dr(), view.getSpes_dr());
+                    view.setCmb_dokter(view.getId_dr());
+                    view.resetAdd_dokter();
+                }
+                
+            }catch(Exception e){
+                view.errorMsg(e);
             }
-            model.menuEnam(view.getNama_dr(), jk, view.getUmur_dr(), view.getId_dr(), view.getSpes_dr());
-            view.setCmb_dokter(view.getId_dr());
-            view.resetAdd_dokter();
+            
         }
         
         //menu7
@@ -117,11 +150,18 @@ public class Controller implements ActionListener{
             view.resetAdd_ruangan();
         }
         if (source.equals(view.getBtn_submit_r())){
-            String id = view.getId_ruangan();
-            String tipe = view.getTipe_cb();
-            model.addRuangan(id, tipe);
-            view.setCmb_ruangan(id);
-            view.resetAdd_ruangan();
+            
+            try{
+                if(!"".equals(view.getId_ruangan())){
+                    String id = view.getId_ruangan();
+                    String tipe = view.getTipe_cb();
+                    model.addRuangan(id, tipe);
+                    view.setCmb_ruangan(id);
+                    view.resetAdd_ruangan();
+                }
+            }catch(Exception e){
+                view.errorMsg(e);
+            }
         }
         
     }

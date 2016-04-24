@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -51,6 +52,10 @@ public class View extends javax.swing.JFrame {
         show_p.addActionListener(a);
     }
     
+    public void errorMsg(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+    
     //menu1
     public void resetCheckIn(){
         id_pasien_in.setText("");
@@ -59,13 +64,15 @@ public class View extends javax.swing.JFrame {
         keluhan.setText("");
         alamat_p.setText("");
         diagnosa.setText("");
-        
     }
     public void setCmb_dokter(String s) {
         cmb_dokter.addItem(s);
     }
     public void setCmb_ruangan(String s) {
         cmb_ruangan.addItem(s);
+    }
+    public void remCmb_ruangan(String s) {
+        cmb_ruangan.removeItem(s);
     }
     public String getCmb_dokter() {
         return (String)cmb_dokter.getSelectedItem();
@@ -129,6 +136,15 @@ public class View extends javax.swing.JFrame {
     }
     
     //menu4
+    public void reset_tab_p(){
+        for (int i = 0; i < tab_p.getRowCount(); i++) {
+            for (int j = 0; j <  tab_p.getColumnCount(); j++) {
+                tab_p.setValueAt("", i, j);
+            }
+        }
+    }
+    
+    
     public void setDaftarPasien(String id, String nama, String diag, String kmr, int i) {
         
         tab_p.setValueAt(id, i, 0);
@@ -141,10 +157,6 @@ public class View extends javax.swing.JFrame {
     }
     
     //menu5
-    public void setDaftarRuangan(String s){
-        //daftar_r.setText(s);
-    }
-    
     public void setTab_r(String id, String tipe, int kp, int av, int i) {
        
        tab_r.setValueAt(id, i, 0);
@@ -153,10 +165,6 @@ public class View extends javax.swing.JFrame {
        tab_r.setValueAt(av, i, 3);
     }
 
-
-
-   
-    
     public JButton getShow_r() {
         return show_r;
     }
@@ -192,7 +200,7 @@ public class View extends javax.swing.JFrame {
     
     //menu7
     public void resetAdd_ruangan() {
-        id_ruangan.setText(" ");
+        id_ruangan.setText("");
     }
     public JButton getBtn_cancel_r() {
         return btn_cancel_r;
