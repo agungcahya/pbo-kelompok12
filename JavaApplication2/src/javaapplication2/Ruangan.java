@@ -5,13 +5,14 @@
  */
 package javaapplication2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author user
  */
-public class Ruangan {
+public class Ruangan implements Serializable{
 
     private ArrayList<PasienInap> daftarpasien = new ArrayList<PasienInap>();
     private String Id;

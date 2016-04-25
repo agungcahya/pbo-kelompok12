@@ -5,12 +5,14 @@
  */
 package javaapplication2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MahersyaEva Herminda
  */
 
-public abstract class Orang {
+public abstract class Orang implements Serializable{
 	private String nama;
 	private char jenisKelamin;
 	private int umur;

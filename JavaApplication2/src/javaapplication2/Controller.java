@@ -24,6 +24,26 @@ public class Controller implements ActionListener{
         if (source.equals(view.getBtn_cancel_in())){
             view.resetCheckIn();
         }
+        if (source.equals(view.getBtn_refresh())){
+            try{
+                model.loadD();
+                model.loadP();
+                view.resCmb_dokter();
+                view.resCmb_ruangan();
+                for(int i=0; i<model.getDaftarRuangan().size(); i++){
+                    int av=(model.getDaftarRuangan().get(i).getKapasitas()-model.getDaftarRuangan().get(i).i);
+                    if(av!=0){
+                        view.setCmb_ruangan(model.getDaftarRuangan().get(i).getId());
+                    }
+                }
+                for(int i=0; i<model.getDaftarDokter().size(); i++){
+                    view.setCmb_dokter(model.getDaftarDokter().get(i).getId());
+                }
+            }catch(Exception e){
+                view.errorMsg(e);
+            }
+            
+        }
         if (source.equals(view.getBtn_checkin())){
             try{
                 if(!"".equals(view.getId_pasien_in())){
@@ -42,6 +62,8 @@ public class Controller implements ActionListener{
                 String id_D = view.getCmb_dokter();
                 String id_R = view.getCmb_ruangan();
                 model.menuSatu(nama, jk, umur, idp, keluhan, alamat, id_R, id_D, diagnosa);
+                model.simpanP();
+                model.simpanR();
                 view.resetCheckIn();
                 }
             }catch(Exception e){
@@ -58,6 +80,8 @@ public class Controller implements ActionListener{
                 String idOut = view.getId_pasien_out();
                 model.deletePasien(idOut);
                 model.removePasienInapId(idOut);
+                model.simpanP();
+                model.simpanR();
                 view.resetCheckOut();
             }catch(Exception e){
                 view.errorMsg(e);
@@ -68,6 +92,7 @@ public class Controller implements ActionListener{
         //menu3
         if (source.equals(view.getBtn_show_dr())){
             try{
+                model.loadD();
                 for(int i=0; i<model.getDaftarDokter().size(); i++){
                     String id=model.getDaftarDokter().get(i).getId();
                     String nama=model.getDaftarDokter().get(i).getNama();
@@ -85,6 +110,7 @@ public class Controller implements ActionListener{
         if (source.equals(view.getShow_p())){
             try{
                 view.reset_tab_p();
+                model.loadP();
                 for(int i=0; i<model.getDaftarpasien().size(); i++){
                     String id=model.getDaftarpasien().get(i).getId();
                     String nama=model.getDaftarpasien().get(i).getNama();
@@ -107,6 +133,7 @@ public class Controller implements ActionListener{
         //menu5
         if (source.equals(view.getShow_r())){
             try{
+                model.loadR();
                 for(int i=0; i<model.getDaftarRuangan().size(); i++){
                     String id=model.getDaftarRuangan().get(i).getId();
                     String tipe=model.getDaftarRuangan().get(i).getType();
@@ -136,6 +163,7 @@ public class Controller implements ActionListener{
                     }
                     model.menuEnam(view.getNama_dr(), jk, view.getUmur_dr(), view.getId_dr(), view.getSpes_dr());
                     view.setCmb_dokter(view.getId_dr());
+                    model.simpanD();
                     view.resetAdd_dokter();
                 }
                 
@@ -158,6 +186,7 @@ public class Controller implements ActionListener{
                     model.addRuangan(id, tipe);
                     view.setCmb_ruangan(id);
                     view.resetAdd_ruangan();
+                    model.simpanR();
                 }
             }catch(Exception e){
                 view.errorMsg(e);

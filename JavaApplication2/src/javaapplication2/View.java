@@ -50,10 +50,11 @@ public class View extends javax.swing.JFrame {
         cmb_dokter.addActionListener(a);
         cmb_ruangan.addActionListener(a);
         show_p.addActionListener(a);
+        btn_refresh.addActionListener(a);
     }
     
     public void errorMsg(Exception e){
-        JOptionPane.showMessageDialog(null, e);
+        JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
     }
     
     //menu1
@@ -65,17 +66,24 @@ public class View extends javax.swing.JFrame {
         alamat_p.setText("");
         diagnosa.setText("");
     }
+
+    public JButton getBtn_refresh() {
+        return btn_refresh;
+    }
     public void setCmb_dokter(String s) {
         cmb_dokter.addItem(s);
     }
     public void setCmb_ruangan(String s) {
         cmb_ruangan.addItem(s);
     }
-    public void remCmb_ruangan(String s) {
-        cmb_ruangan.removeItem(s);
-    }
     public String getCmb_dokter() {
         return (String)cmb_dokter.getSelectedItem();
+    }
+    public void resCmb_dokter(){
+        cmb_dokter.removeAllItems();
+    }
+    public void resCmb_ruangan(){
+        cmb_ruangan.removeAllItems();
     }
     public String getCmb_ruangan() {
         return (String)cmb_ruangan.getSelectedItem();
@@ -249,6 +257,7 @@ public class View extends javax.swing.JFrame {
         jenis_kel_p = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
         diagnosa = new javax.swing.JTextField();
+        btn_refresh = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btn_checkout = new javax.swing.JButton();
         btn_cancel_out = new javax.swing.JButton();
@@ -337,17 +346,14 @@ public class View extends javax.swing.JFrame {
 
         jLabel24.setText("Diagnosa");
 
+        btn_refresh.setText("Refresh");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_checkin)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cancel_in))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +390,15 @@ public class View extends javax.swing.JFrame {
                                         .addComponent(diagnosa, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(191, 191, 191)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_checkin)
+                        .addGap(19, 19, 19)
+                        .addComponent(btn_refresh)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_cancel_in)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -398,7 +412,7 @@ public class View extends javax.swing.JFrame {
                     .addComponent(id_pasien_in, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addComponent(cmb_dokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(nama_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -425,7 +439,8 @@ public class View extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancel_in)
-                    .addComponent(btn_checkin))
+                    .addComponent(btn_checkin)
+                    .addComponent(btn_refresh))
                 .addContainerGap())
         );
 
@@ -841,6 +856,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancel_r;
     private javax.swing.JButton btn_checkin;
     private javax.swing.JButton btn_checkout;
+    private javax.swing.JButton btn_refresh;
     private javax.swing.JButton btn_show_dr;
     private javax.swing.JButton btn_submit_dr;
     private javax.swing.JButton btn_submit_r;

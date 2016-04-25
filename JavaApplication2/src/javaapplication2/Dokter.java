@@ -5,11 +5,13 @@
  */
 package javaapplication2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MahersyaEva Herminda
  */
-public class Dokter extends Orang {
+public class Dokter extends Orang implements Serializable{
 	private String spesialis;
 	
 	public Dokter (String nama, char jenisKelamin, int umur, String id, String spesialis) {

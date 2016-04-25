@@ -10,9 +10,10 @@ package javaapplication2;
  * @author wewew
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PasienInap {
+public class PasienInap implements Serializable{
 	private Pasien pasien;
 	private Dokter dokter;
 	private ArrayList<String> diagnosa=new ArrayList<String>();

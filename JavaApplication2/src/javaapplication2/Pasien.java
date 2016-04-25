@@ -1,11 +1,13 @@
 
 package javaapplication2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MahersyaEva Herminda
  */
-public class Pasien extends Orang {
+public class Pasien extends Orang implements Serializable{
 	private String penyakit;
 	private String alamat;
 	

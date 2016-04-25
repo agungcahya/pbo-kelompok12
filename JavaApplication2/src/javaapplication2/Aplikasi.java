@@ -1,5 +1,6 @@
 
 package javaapplication2;
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import javaapplication2.Dokter;
@@ -35,7 +36,68 @@ public class Aplikasi {
         return daftarRuangan;
     }
     
+    public void simpanR(){
+        try{
+            FileOutputStream fos=new FileOutputStream("data_ruangan.txt");
+            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            oos.writeObject(daftarRuangan);
+            oos.flush();
+        }catch(IOException ioe){
+            System.err.println("Error "+ioe);
+        }
+    }
     
+    public void loadR() throws ClassNotFoundException{
+        try{
+            FileInputStream fis=new FileInputStream("data_ruangan.txt");
+            ObjectInputStream ois=new ObjectInputStream(fis);
+            daftarRuangan=(ArrayList<Ruangan>) ois.readObject();
+        }catch(IOException ioe){
+            System.err.println("Error "+ioe);
+        }
+    }
+    
+    public void simpanD(){
+        try{
+            FileOutputStream fos=new FileOutputStream("data_dokter.txt");
+            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            oos.writeObject(daftarDokter);
+            oos.flush();
+        }catch(IOException ioe){
+            System.err.println("Error "+ioe);
+        }
+    }
+    
+    public void loadD() throws ClassNotFoundException{
+        try{
+            FileInputStream fis=new FileInputStream("data_dokter.txt");
+            ObjectInputStream ois=new ObjectInputStream(fis);
+            daftarDokter=(ArrayList<Dokter>) ois.readObject();
+        }catch(IOException ioe){
+            System.err.println("Error "+ioe);
+        }
+    }
+    
+    public void simpanP(){
+        try{
+            FileOutputStream fos=new FileOutputStream("data_pasien.txt");
+            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            oos.writeObject(daftarpasien);
+            oos.flush();
+        }catch(IOException ioe){
+            System.err.println("Error "+ioe);
+        }
+    }
+    
+    public void loadP() throws ClassNotFoundException{
+        try{
+            FileInputStream fis=new FileInputStream("data_pasien.txt");
+            ObjectInputStream ois=new ObjectInputStream(fis);
+            daftarpasien=(ArrayList<Pasien>) ois.readObject();
+        }catch(IOException ioe){
+            System.err.println("Error "+ioe);
+        }
+    }
     
    public void addPasien(String nama, char jenisKelamin, int umur, String id, String penyakit, String Alamat)
    {
