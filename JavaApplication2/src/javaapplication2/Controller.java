@@ -27,7 +27,7 @@ public class Controller implements ActionListener{
         if (source.equals(view.getBtn_refresh())){
             try{
                 model.loadD();
-                model.loadP();
+                model.loadR();
                 view.resCmb_dokter();
                 view.resCmb_ruangan();
                 for(int i=0; i<model.getDaftarRuangan().size(); i++){
